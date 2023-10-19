@@ -11,6 +11,7 @@ namespace Bowler.Shared.Entities
     {
         [Required(ErrorMessage = "El ID es obligatorio")]
         public string ID { get; set; } = null;
+
         [Required(ErrorMessage = "El nombre del rol es obligatorio")]
         public string Nombre { get; set; } = null;
     }

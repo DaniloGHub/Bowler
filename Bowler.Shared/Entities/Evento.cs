@@ -7,16 +7,20 @@ using System.Threading.Tasks;
 
 namespace Bowler.Shared.Entities
 {
-    public class Eventos
+    public class Evento
     {
         [Required(ErrorMessage = "El ID del evento es obligatorio")]
         public string Id { get; set; } = null;
+
         [Required(ErrorMessage = "El nobre del evento es obligatorio")]
         public string Nombre { get; set; } = null;
+
         [Required(ErrorMessage = "La fecha del evento es obligatoria")]
         public string Fecha { get; set; } = null;
+
         [Required(ErrorMessage = "La capacidad máxima del evento es obligatoria")]
         public string Capacidad { get; set; } = null;
+
         public string Descripcion { get; set; } = null;
     }
 }

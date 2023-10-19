@@ -11,12 +11,16 @@ namespace Bowler.Shared.Entities
     {
         [Required(ErrorMessage = "El ID de la promoción es obligatorio")]
         public string Id { get; set; } = null;
+
         [Required(ErrorMessage = "El nombre de la promoción es obligatorio")]
         public string Nombre { get; set; } = null;
+
         [Required(ErrorMessage = "La fecha de inicio de la promoción es obligatoria")]
         public string startdate { get; set; } = null;
+
         [Required(ErrorMessage = "La fecha de finalización de la promoción es obligatoria")]
         public string enddate { get; set; } = null;
+
         public string Descripción { get; set; } = null;
     }
 }

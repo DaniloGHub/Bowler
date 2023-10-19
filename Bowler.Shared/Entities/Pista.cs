@@ -11,8 +11,10 @@ namespace Bowler.Shared.Entities
     {
         [Required(ErrorMessage = "El Id de la pista es obligatorio")]
         public string Id { get; set; } = null;
+
         [Required(ErrorMessage = "El estado de la pista es obligatorio")]
         public string Estado { get; set; } = null;
+
         public string Descripcion { get; set; } = null;
     }
 }

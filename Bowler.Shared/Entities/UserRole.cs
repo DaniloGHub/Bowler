@@ -11,6 +11,7 @@ namespace Bowler.Shared.Entities
     {
         [Required(ErrorMessage = "El ID es obligatorio")]
         public string Id { get; set; } = null;
+
         [Required(ErrorMessage = "La fecha de asignación es obligatoria")]
         public string fecha_asignacion { get; set; } = null;
     }
