@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowler.Shared", "Bowler.Shared\Bowler.Shared.csproj", "{9FED1323-EA16-4101-9C42-79D5E9593568}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bowler.Shared", "Bowler.Shared\Bowler.Shared.csproj", "{9FED1323-EA16-4101-9C42-79D5E9593568}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowler.API", "Bowler.API\Bowler.API.csproj", "{F2226819-3562-4296-B8D2-B1C41B655891}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bowler.API", "Bowler.API\Bowler.API.csproj", "{F2226819-3562-4296-B8D2-B1C41B655891}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowler.WEB", "Bowler.WEB\Bowler.WEB.csproj", "{37D1B909-AE75-4192-91D3-7033428A7E34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bowler.WEB", "Bowler.WEB\Bowler.WEB.csproj", "{37D1B909-AE75-4192-91D3-7033428A7E34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
