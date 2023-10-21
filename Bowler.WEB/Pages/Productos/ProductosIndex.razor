@@ -1,0 +1,53 @@
+﻿@using Bowler.WEB.Repositories;
+@using Bowler.Shared.Entities;
+@page "/productos"
+
+@inject IRepository repository
+
+<h3>ProductosIndex</h3>
+
+<div class="mb-3">
+    <a class="btn-primary" href="/productos/create">Nuevo producto</a>
+</div>
+
+<GenericList MyList="Productos">
+
+    <Body>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var producto in Productos!)
+                {
+                    <tr>
+                        <td>
+                            @producto.
+                        </td>
+                        <td>
+                            <a class="btn btn-warning">Editar</a>
+                            <button class="btn btn-danger">Borrar</button>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </Body>
+
+</GenericList>
+
+@code {
+    public List<Producto>? Productos { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        var responseHppt = await repository.Get<List<Producto>>("/api/productos");
+        Productos = responseHppt.Response!;
+    }
+}

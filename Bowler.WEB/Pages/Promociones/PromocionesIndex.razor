@@ -1,0 +1,53 @@
+﻿@using Bowler.WEB.Repositories;
+@using Bowler.Shared.Entities;
+@page "/promociones"
+
+@inject IRepository repository
+
+<h3>PromocionesIndex</h3>
+
+<div class="mb-3">
+    <a class="btn-primary" href="/promociones/create">Nueva promoción</a>
+</div>
+
+<GenericList MyList="Promociones">
+
+    <Body>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Promocion</th>
+                    <th></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var promocion in Promociones!)
+                {
+                    <tr>
+                        <td>
+                            @promocion.
+                        </td>
+                        <td>
+                            <a class="btn btn-warning">Editar</a>
+                            <button class="btn btn-danger">Borrar</button>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </Body>
+
+</GenericList>
+
+@code {
+    public List<Promocion>? Promociones { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        var responseHppt = await repository.Get<List<Promocion>>("/api/promociones");
+        Promociones = responseHppt.Response!;
+    }
+}
