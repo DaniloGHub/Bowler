@@ -10,7 +10,7 @@ namespace Bowler.Shared.Entities
     public class Promocion
     {
         [Required(ErrorMessage = "El ID de la promoción es obligatorio")]
-        public string Id { get; set; } = null;
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "El nombre de la promoción es obligatorio")]
         public string Nombre { get; set; } = null;

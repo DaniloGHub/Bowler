@@ -10,7 +10,7 @@ namespace Bowler.Shared.Entities
     public class Pago
     {
         [Required(ErrorMessage = "El ID del pago es obligatorio")]
-        public string Id { get; set; } = null;
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "El precio del pago es obligatorio")]
         public string Precio { get; set; } = null;

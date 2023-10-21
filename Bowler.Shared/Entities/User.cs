@@ -10,7 +10,7 @@ namespace Bowler.Shared.Entities
     internal class User
     {
         [Required(ErrorMessage = "El ID del usuario es obligatorio")]
-        public string Id { get; set; } = null;
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "El nombre del usuario es obligatorio")]
         public string Nombre { get; set; } = null;

@@ -10,7 +10,7 @@ namespace Bowler.Shared.Entities
     public class Evento
     {
         [Required(ErrorMessage = "El ID del evento es obligatorio")]
-        public string Id { get; set; } = null;
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "El nobre del evento es obligatorio")]
         public string Nombre { get; set; } = null;

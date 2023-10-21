@@ -10,7 +10,7 @@ namespace Bowler.Shared.Entities
     public class Reserva
     {
         [Required(ErrorMessage ="El ID de la reserva es obligatorio")]
-        public string Id { get; set; } = null;
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "El valor de la reserva es obligatorio")]
         public string Valor { get; set; } = null;

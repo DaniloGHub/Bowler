@@ -10,7 +10,7 @@ namespace Bowler.Shared.Entities
     public class Producto
     {
         [Required(ErrorMessage = "El ID del producto es obligatorio")]
-        public string Id { get; set; } = null;
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "El nombre del producto es obligatorio")]
         public string Nombre { get; set; } = null;

@@ -21,8 +21,4 @@
     <ProjectReference Include="..\Bowler.Shared\Bowler.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>
