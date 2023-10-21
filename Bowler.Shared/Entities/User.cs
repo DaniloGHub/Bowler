@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Bowler.Shared.Entities
 {
-    internal class User
+    public class User
     {
         [Required(ErrorMessage = "El ID del usuario es obligatorio")]
         public int Id { get; set; }

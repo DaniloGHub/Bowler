@@ -14,8 +14,8 @@ namespace Bowler.API.Data
         public DbSet<Evento>Eventos { get; set; }
         public DbSet<Promocion>Promociones { get; set; }
         public DbSet<Role>Roles { get; set; }
-        //public DbSet<UserRole>UserRoles { get; set; }
-        //public DbSet<User>Users { get; set; }
+        public DbSet<UserRole>UserRoles { get; set; }
+        public DbSet<User>Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

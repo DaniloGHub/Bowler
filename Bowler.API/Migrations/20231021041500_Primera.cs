@@ -5,7 +5,7 @@
 namespace Bowler.API.Migrations
 {
     /// <inheritdoc />
-    public partial class Inicial : Migration
+    public partial class Primera : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -14,7 +14,8 @@ namespace Bowler.API.Migrations
                 name: "Eventos",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Fecha = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Capacidad = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -29,7 +30,8 @@ namespace Bowler.API.Migrations
                 name: "Pagos",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Precio = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     fecha = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     metodo_pago = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -45,7 +47,8 @@ namespace Bowler.API.Migrations
                 name: "Pistas",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Estado = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
@@ -58,7 +61,8 @@ namespace Bowler.API.Migrations
                 name: "Productos",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Precio = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Stock = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -73,7 +77,8 @@ namespace Bowler.API.Migrations
                 name: "Promociones",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     startdate = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     enddate = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -88,7 +93,8 @@ namespace Bowler.API.Migrations
                 name: "Reservas",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Valor = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Fecha = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Duracion = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -97,6 +103,49 @@ namespace Bowler.API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Reservas", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Roles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Roles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserRoles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    fecha_asignacion = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserRoles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Apellido = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    fecha_nacimiento = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Telefono = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateIndex(
@@ -156,6 +205,15 @@ namespace Bowler.API.Migrations
 
             migrationBuilder.DropTable(
                 name: "Reservas");
+
+            migrationBuilder.DropTable(
+                name: "Roles");
+
+            migrationBuilder.DropTable(
+                name: "UserRoles");
+
+            migrationBuilder.DropTable(
+                name: "Users");
         }
     }
 }
