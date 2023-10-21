@@ -40,5 +40,27 @@ namespace Bowler.API.Controllers
             await _context.SaveChangesAsync();
             return Ok(user);
         }
+
+        [HttpPut]
+        public async Task<ActionResult> Put(User user)
+        {
+            _context.Update(user);
+            await _context.SaveChangesAsync();
+            return Ok(user);
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var FilaAfectada = await _context.Users
+                .Where(x => x.Id == id)
+                .ExecuteDeleteAsync();
+
+            if (FilaAfectada == 0)
+            {
+                return NotFound();
+            }
+            return NoContent();
+        }
     }
 }

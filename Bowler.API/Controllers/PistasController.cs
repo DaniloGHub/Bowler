@@ -40,5 +40,27 @@ namespace Bowler.API.Controllers
             await _context.SaveChangesAsync();
             return Ok(pista);
         }
+
+        [HttpPut]
+        public async Task<ActionResult> Put(Pista pista)
+        {
+            _context.Update(pista);
+            await _context.SaveChangesAsync();
+            return Ok(pista);
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var FilaAfectada = await _context.Pistas
+                .Where(x => x.Id == id)
+                .ExecuteDeleteAsync();
+
+            if (FilaAfectada == 0)
+            {
+                return NotFound();
+            }
+            return NoContent();
+        }
     }
 }

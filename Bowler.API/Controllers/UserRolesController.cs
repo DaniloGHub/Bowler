@@ -40,5 +40,27 @@ namespace Bowler.API.Controllers
             await _context.SaveChangesAsync();
             return Ok(userrole);
         }
+
+        [HttpPut]
+        public async Task<ActionResult> Put(UserRole userrole)
+        {
+            _context.Update(userrole);
+            await _context.SaveChangesAsync();
+            return Ok(userrole);
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var FilaAfectada = await _context.UserRoles
+                .Where(x => x.Id == id)
+                .ExecuteDeleteAsync();
+
+            if (FilaAfectada == 0)
+            {
+                return NotFound();
+            }
+            return NoContent();
+        }
     }
 }
