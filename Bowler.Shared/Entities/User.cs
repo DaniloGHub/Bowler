@@ -1,36 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Bowler.Shared.Entities.Enums;
+using Bowler.Shared.Entities;
 
 namespace Bowler.Shared.Entities
 {
-    public class User
+    public class User : IdentityUser
     {
-        [Required(ErrorMessage = "El ID del usuario es obligatorio")]
-        public int Id { get; set; }
+        [Display(Name = "Documento")]
+        [MaxLength(20, ErrorMessage = "El campo {0} debe tener máximo {1} caractéres.")]
+        [Required(ErrorMessage = "El campo {0} es obligatorio.")]
+        public string Document { get; set; } = null!;
 
-        [Required(ErrorMessage = "El nombre del usuario es obligatorio")]
-        public string? Nombre { get; set; }
+        [Display(Name = "Nombres")]
+        [MaxLength(50, ErrorMessage = "El campo {0} debe tener máximo {1} caractéres.")]
+        [Required(ErrorMessage = "El campo {0} es obligatorio.")]
+        public string FirstName { get; set; } = null!;
 
-        [Required(ErrorMessage = "El apellido del usuario es obligatorio")]
-        public string? Apellido { get; set; }
+        [Display(Name = "Apellidos")]
+        [MaxLength(50, ErrorMessage = "El campo {0} debe tener máximo {1} caractéres.")]
+        [Required(ErrorMessage = "El campo {0} es obligatorio.")]
+        public string LastName { get; set; } = null!;
 
-        [Required(ErrorMessage = "El email del usuario es obligatorio")]
-        public string? Email { get; set; }
+        [Display(Name = "Dirección")]
+        [MaxLength(200, ErrorMessage = "El campo {0} debe tener máximo {1} caractéres.")]
+        [Required(ErrorMessage = "El campo {0} es obligatorio.")]
+        public string Address { get; set; } = null!;
 
-        [Required(ErrorMessage = "La fecha de nacimiento del usuario es obligatoria")]
-        public string? Fecha_Nacimiento { get; set; }
+        [Display(Name = "Foto")]
+        public string Photo { get; set; }
 
-        [Required(ErrorMessage = "El telefono del usuario es obligatorio")]
-        public string? Telefono { get; set; }
+        [Display(Name = "Tipo de usuario")]
+        public UserType UserType { get; set; }
 
-        public string FullName => $"{Nombre} {Apellido}";
+        [Display(Name = "Usuario")]
+        public string FullName => $"{FirstName} {LastName}";
 
-        public ICollection<UserRole>? UserRoles { get; set; }
+        public ICollection<UserRole> UserRoles { get; set; }
 
-        public ICollection<Reserva>? Reservas { get; set; }
+        public ICollection<Reserva> Reservas { get; set; }
     }
 }

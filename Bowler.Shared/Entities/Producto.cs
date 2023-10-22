@@ -13,16 +13,16 @@ namespace Bowler.Shared.Entities
         public int Id { get; set; }
 
         [Required(ErrorMessage = "El nombre del producto es obligatorio")]
-        public string? Nombre { get; set; }
+        public string Nombre { get; set; }
 
         [Required(ErrorMessage = "El precio del producto es obligatorio")]
-        public string? Precio { get; set; }
+        public string Precio { get; set; }
 
         [Required(ErrorMessage = "El stock del producto es obligatorio")]
-        public string? Stock { get; set; }
+        public string Stock { get; set; }
 
-        public string? Descripcion { get; set; }
+        public string Descripcion { get; set; }
 
-        public ICollection<Promocion>? Promociones { get; set; }
+        public ICollection<Promocion> Promociones { get; set; }
     }
 }

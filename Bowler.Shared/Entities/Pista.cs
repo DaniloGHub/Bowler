@@ -13,10 +13,10 @@ namespace Bowler.Shared.Entities
         public int Id { get; set; }
 
         [Required(ErrorMessage = "El estado de la pista es obligatorio")]
-        public string? Estado { get; set; }
+        public string Estado { get; set; }
 
-        public string? Descripcion { get; set; }
+        public string Descripcion { get; set; }
 
-        public ICollection<Evento>? Eventos { get; set; }
+        public ICollection<Evento> Eventos { get; set; }
     }
 }

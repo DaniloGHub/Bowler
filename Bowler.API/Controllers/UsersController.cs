@@ -22,10 +22,10 @@ namespace Bowler.API.Controllers
             return Ok(await _context.Users.ToListAsync());
         }
 
-        [HttpGet("{id:int}")]
-        public async Task<ActionResult> Get(int id)
+        [HttpGet("{Document:string}")]
+        public async Task<ActionResult> Get(string document)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Document == document);
             if (user == null)
             {
                 return NotFound();
@@ -49,11 +49,11 @@ namespace Bowler.API.Controllers
             return Ok(user);
         }
 
-        [HttpDelete("{id:int}")]
-        public async Task<ActionResult> Delete(int id)
+        [HttpDelete("{document:string}")]
+        public async Task<ActionResult> Delete(string document)
         {
             var FilaAfectada = await _context.Users
-                .Where(x => x.Id == id)
+                .Where(x => x.Document == document)
                 .ExecuteDeleteAsync();
 
             if (FilaAfectada == 0)
