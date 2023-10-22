@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿    using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
-using Bowler.Shared.Entities.Enums;
+using Bowler.Shared.Enums;
 using Bowler.Shared.Entities;
 
 namespace Bowler.Shared.Entities
