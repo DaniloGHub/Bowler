@@ -13,6 +13,8 @@ namespace Bowler.Shared.Entities
         public int Id { get; set; }
 
         [Required(ErrorMessage = "El nombre del rol es obligatorio")]
-        public string Nombre { get; set; } = null;
+        public string? Nombre { get; set; }
+
+        public ICollection<UserRole>? UserRoles { get; set; }
     }
 }

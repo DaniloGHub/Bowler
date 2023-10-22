@@ -12,18 +12,22 @@ namespace Bowler.Shared.Entities
         [Required(ErrorMessage = "El ID del pago es obligatorio")]
         public int Id { get; set; }
 
+        public Reserva? Reserva { get; set; }
+
+        public int ReservaId { get; set; }
+
         [Required(ErrorMessage = "El precio del pago es obligatorio")]
-        public string Precio { get; set; } = null;
+        public string? Precio { get; set; }
 
         [Required(ErrorMessage = "La fecha del pago es obligatoria")]
-        public string fecha { get; set; } = null;
+        public string? Fecha { get; set; }
 
         [Required(ErrorMessage = "El metodo de pago es obligatorio")]
-        public string metodo_pago { get; set; } = null;
+        public string? Metodo_Pago { get; set; }
 
         [Required(ErrorMessage = "El estgado del pago es obligatorio")]
-        public string estado { get; set; } = null;
+        public string? Estado { get; set; }
 
-        public string Descripcion { get; set; } = null;
+        public string? Descripcion { get; set; }
     }
 }

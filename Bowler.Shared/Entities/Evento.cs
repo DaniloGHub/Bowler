@@ -12,15 +12,20 @@ namespace Bowler.Shared.Entities
         [Required(ErrorMessage = "El ID del evento es obligatorio")]
         public int Id { get; set; }
 
+        public Pista? Pista { get; set; }
+
+        public int PistaId { get; set; }
+
         [Required(ErrorMessage = "El nobre del evento es obligatorio")]
-        public string Nombre { get; set; } = null;
+        public string? Nombre { get; set; }
 
         [Required(ErrorMessage = "La fecha del evento es obligatoria")]
-        public string Fecha { get; set; } = null;
+        public string? Fecha { get; set; }
 
         [Required(ErrorMessage = "La capacidad máxima del evento es obligatoria")]
-        public string Capacidad { get; set; } = null;
+        public string? Capacidad { get; set; }
 
-        public string Descripcion { get; set; } = null;
+        [DataType(DataType.MultilineText)]
+        public string? Descripcion { get; set; }
     }
 }

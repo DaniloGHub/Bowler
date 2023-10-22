@@ -13,20 +13,24 @@ namespace Bowler.Shared.Entities
         public int Id { get; set; }
 
         [Required(ErrorMessage = "El nombre del usuario es obligatorio")]
-        public string Nombre { get; set; } = null;
+        public string? Nombre { get; set; }
 
         [Required(ErrorMessage = "El apellido del usuario es obligatorio")]
-        public string Apellido { get; set; } = null;
+        public string? Apellido { get; set; }
 
         [Required(ErrorMessage = "El email del usuario es obligatorio")]
-        public string Email { get; set; } = null;
+        public string? Email { get; set; }
 
         [Required(ErrorMessage = "La fecha de nacimiento del usuario es obligatoria")]
-        public string fecha_nacimiento { get; set; } = null;
+        public string? Fecha_Nacimiento { get; set; }
 
         [Required(ErrorMessage = "El telefono del usuario es obligatorio")]
-        public string Telefono { get; set; } = null;
+        public string? Telefono { get; set; }
 
         public string FullName => $"{Nombre} {Apellido}";
+
+        public ICollection<UserRole>? UserRoles { get; set; }
+
+        public ICollection<Reserva>? Reservas { get; set; }
     }
 }

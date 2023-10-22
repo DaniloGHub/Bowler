@@ -34,7 +34,6 @@ namespace Bowler.API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Descripcion")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Fecha")
@@ -45,10 +44,15 @@ namespace Bowler.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("PistaId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("Id")
                         .IsUnique();
+
+                    b.HasIndex("PistaId");
 
                     b.ToTable("Eventos");
                 });
@@ -62,6 +66,17 @@ namespace Bowler.API.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Descripcion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Estado")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Fecha")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Metodo_Pago")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -69,22 +84,15 @@ namespace Bowler.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("estado")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("fecha")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("metodo_pago")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ReservaId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("Id")
                         .IsUnique();
+
+                    b.HasIndex("ReservaId");
 
                     b.ToTable("Pagos");
                 });
@@ -98,7 +106,6 @@ namespace Bowler.API.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Descripcion")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Estado")
@@ -122,7 +129,6 @@ namespace Bowler.API.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Descripcion")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nombre")
@@ -154,6 +160,9 @@ namespace Bowler.API.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Descripción")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EndDate")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -161,11 +170,10 @@ namespace Bowler.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("enddate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ProductoId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("startdate")
+                    b.Property<string>("StartDate")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -173,6 +181,8 @@ namespace Bowler.API.Migrations
 
                     b.HasIndex("Id")
                         .IsUnique();
+
+                    b.HasIndex("ProductoId");
 
                     b.ToTable("Promociones");
                 });
@@ -186,7 +196,6 @@ namespace Bowler.API.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Descripcion")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Duracion")
@@ -197,6 +206,9 @@ namespace Bowler.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Valor")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -205,6 +217,8 @@ namespace Bowler.API.Migrations
 
                     b.HasIndex("Id")
                         .IsUnique();
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Reservas");
                 });
@@ -242,15 +256,15 @@ namespace Bowler.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Fecha_Nacimiento")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Telefono")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("fecha_nacimiento")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -267,13 +281,109 @@ namespace Bowler.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("fecha_asignacion")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("RoleId");
+
+                    b.HasIndex("UserId");
+
                     b.ToTable("UserRoles");
+                });
+
+            modelBuilder.Entity("Bowler.Shared.Entities.Evento", b =>
+                {
+                    b.HasOne("Bowler.Shared.Entities.Pista", "Pista")
+                        .WithMany("Eventos")
+                        .HasForeignKey("PistaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Pista");
+                });
+
+            modelBuilder.Entity("Bowler.Shared.Entities.Pago", b =>
+                {
+                    b.HasOne("Bowler.Shared.Entities.Reserva", "Reserva")
+                        .WithMany("Pagos")
+                        .HasForeignKey("ReservaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Reserva");
+                });
+
+            modelBuilder.Entity("Bowler.Shared.Entities.Promocion", b =>
+                {
+                    b.HasOne("Bowler.Shared.Entities.Producto", "Producto")
+                        .WithMany("Promociones")
+                        .HasForeignKey("ProductoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Producto");
+                });
+
+            modelBuilder.Entity("Bowler.Shared.Entities.Reserva", b =>
+                {
+                    b.HasOne("Bowler.Shared.Entities.User", "User")
+                        .WithMany("Reservas")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Bowler.Shared.Entities.UserRole", b =>
+                {
+                    b.HasOne("Bowler.Shared.Entities.Role", "Role")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Bowler.Shared.Entities.User", "User")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Bowler.Shared.Entities.Pista", b =>
+                {
+                    b.Navigation("Eventos");
+                });
+
+            modelBuilder.Entity("Bowler.Shared.Entities.Producto", b =>
+                {
+                    b.Navigation("Promociones");
+                });
+
+            modelBuilder.Entity("Bowler.Shared.Entities.Reserva", b =>
+                {
+                    b.Navigation("Pagos");
+                });
+
+            modelBuilder.Entity("Bowler.Shared.Entities.Role", b =>
+                {
+                    b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("Bowler.Shared.Entities.User", b =>
+                {
+                    b.Navigation("Reservas");
+
+                    b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618
         }
