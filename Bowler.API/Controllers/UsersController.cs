@@ -22,7 +22,7 @@ namespace Bowler.API.Controllers
             return Ok(await _context.Users.ToListAsync());
         }
 
-        [HttpGet("{Document:string}")]
+        [HttpGet("{document}")]
         public async Task<ActionResult> Get(string document)
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Document == document);
@@ -49,7 +49,7 @@ namespace Bowler.API.Controllers
             return Ok(user);
         }
 
-        [HttpDelete("{document:string}")]
+        [HttpDelete("{document}")]
         public async Task<ActionResult> Delete(string document)
         {
             var FilaAfectada = await _context.Users
