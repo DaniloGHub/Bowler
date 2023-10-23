@@ -38,6 +38,6 @@ namespace Bowler.Shared.Entities
 
         public ICollection<UserRole> UserRoles { get; set; }
 
-        public ICollection<Reserva> Reservas { get; set; }
+        //public ICollection<Reserva> Reservas { get; set; }
     }
 }

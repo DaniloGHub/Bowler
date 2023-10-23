@@ -21,6 +21,6 @@ namespace Bowler.Shared.Entities
         [MaxLength(200, ErrorMessage = "La {0} debe tener máximo 200 caractéres.")]
         public string Descripcion { get; set; }
 
-        public ICollection<Evento> Eventos { get; set; }
+        //public ICollection<Evento> Eventos { get; set; }
     }
 }
