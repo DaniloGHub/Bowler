@@ -10,8 +10,13 @@ namespace Bowler.Shared.Entities
     public class Role
     {
         [Required(ErrorMessage = "El ID es obligatorio")]
-        public string ID { get; set; } = null;
+        [MaxLength(20, ErrorMessage = "El ID debe tener máximo 20 caractéres.")]
+        public int Id { get; set; }
+
         [Required(ErrorMessage = "El nombre del rol es obligatorio")]
-        public string Nombre { get; set; } = null;
+        [StringLength(50, ErrorMessage = "No puede tener más de 50 cáracteres")]
+        public string Nombre { get; set; }
+
+        public ICollection<UserRole> UserRoles { get; set; }
     }
 }

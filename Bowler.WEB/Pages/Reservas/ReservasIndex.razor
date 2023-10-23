@@ -1,0 +1,53 @@
+﻿@using Bowler.WEB.Repositories;
+@using Bowler.Shared.Entities;
+@page "/reservas"
+
+@inject IRepository repository
+
+<h3>ReservasIndex</h3>
+
+<div class="mb-3">
+    <a class="btn-primary" href="/reservas/create">Nueva reserva</a>
+</div>
+
+<GenericList MyList="Reservas">
+
+    <Body>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Reserva</th>
+                    <th></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var reserva in Reservas!)
+                {
+                    <tr>
+                        <td>
+                            @reserva.Id
+                        </td>
+                        <td>
+                            <a class="btn btn-warning">Editar</a>
+                            <button class="btn btn-danger">Borrar</button>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </Body>
+
+</GenericList>
+
+@code {
+    public List<Reserva>? Reservas { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        var responseHppt = await repository.Get<List<Reserva>>("/api/reservas");
+        Reservas = responseHppt.Response!;
+    }
+}

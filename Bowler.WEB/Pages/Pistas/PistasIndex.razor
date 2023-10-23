@@ -1,0 +1,53 @@
+﻿@using Bowler.WEB.Repositories;
+@using Bowler.Shared.Entities;
+@page "/pistas"
+
+@inject IRepository repository
+
+<h3>PistasIndex</h3>
+
+<div class="mb-3">
+    <a class="btn-primary" href="/pistas/create">Nueva pista</a>
+</div>
+
+<GenericList MyList="Pistas">
+
+    <Body>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Pista</th>
+                    <th></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var pista in Pistas!)
+                {
+                    <tr>
+                        <td>
+                            @pista.Id
+                        </td>
+                        <td>
+                            <a class="btn btn-warning">Editar</a>
+                            <button class="btn btn-danger">Borrar</button>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </Body>
+
+</GenericList>
+
+@code {
+    public List<Pista>? Pistas { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        var responseHppt = await repository.Get<List<Pista>>("/api/pistas");
+        Pistas = responseHppt.Response!;
+    }
+}

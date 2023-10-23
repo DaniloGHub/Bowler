@@ -1,0 +1,53 @@
+﻿@using Bowler.WEB.Repositories;
+@using Bowler.Shared.Entities;
+@page "/userroles"
+
+@inject IRepository repository
+
+<h3>UserRolesIndex</h3>
+
+<div class="mb-3">
+    <a class="btn-primary" href="/userroles/create">Nuevo UserRole</a>
+</div>
+
+<GenericList MyList="UserRoles">
+
+    <Body>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>UserRole</th>
+                    <th></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var userrole in UserRoles!)
+                {
+                    <tr>
+                        <td>
+                            @userrole.Id
+                        </td>
+                        <td>
+                            <a class="btn btn-warning">Editar</a>
+                            <button class="btn btn-danger">Borrar</button>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </Body>
+
+</GenericList>
+
+@code {
+    public List<UserRole>? UserRoles { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        var responseHppt = await repository.Get<List<UserRole>>("/api/userrole");
+        UserRoles = responseHppt.Response!;
+    }
+}

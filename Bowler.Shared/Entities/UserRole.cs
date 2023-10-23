@@ -7,11 +7,18 @@ using System.Threading.Tasks;
 
 namespace Bowler.Shared.Entities
 {
-    internal class UserRole
+    public class UserRole
     {
         [Required(ErrorMessage = "El ID es obligatorio")]
-        public string Id { get; set; } = null;
-        [Required(ErrorMessage = "La fecha de asignación es obligatoria")]
-        public string fecha_asignacion { get; set; } = null;
+        [MaxLength(20, ErrorMessage = "El ID debe tener máximo 20 caractéres.")]
+        public int Id { get; set; }
+
+        public User User { get; set; }
+
+        public int UserId { get; set; }
+
+        public Role Role { get; set; }
+
+        public int RoleId { get; set; }
     }
 }

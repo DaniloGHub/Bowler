@@ -1,0 +1,53 @@
+﻿@using Bowler.WEB.Repositories;
+@using Bowler.Shared.Entities;
+@page "/users"
+
+@inject IRepository repository
+
+<h3>UsersIndex</h3>
+
+<div class="mb-3">
+    <a class="btn-primary" href="/users/create">Nuevo Usuario</a>
+</div>
+
+<GenericList MyList="Users">
+
+    <Body>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Users!)
+                {
+                    <tr>
+                        <td>
+                            @user.FullName
+                        </td>
+                        <td>
+                            <a class="btn btn-warning">Editar</a>
+                            <button class="btn btn-danger">Borrar</button>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </Body>
+
+</GenericList>
+
+@code {
+    public List<User>? Users { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        var responseHppt = await repository.Get<List<User>>("/api/users");
+        Users = responseHppt.Response!;
+    }
+}

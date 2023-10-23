@@ -1,0 +1,53 @@
+﻿@using Bowler.WEB.Repositories;
+@using Bowler.Shared.Entities;
+@page "/eventos"
+
+@inject IRepository repository
+
+<h3>EventosIndex</h3>
+
+<div class="mb-3">
+    <a class="btn-primary" href="/eventos/create">Nuevo evento</a>
+</div>
+
+<GenericList MyList="Eventos">
+
+    <Body>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Evento</th>
+                    <th></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var evento in Eventos!)
+                {
+                    <tr>
+                        <td>
+                            @evento.Nombre
+                        </td>
+                        <td>
+                            <a class="btn btn-warning">Editar</a>
+                            <button class="btn btn-danger">Borrar</button>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </Body>
+
+</GenericList>
+
+@code {
+    public List<Evento>? Eventos { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        var responseHppt = await repository.Get<List<Evento>>("/api/eventos");
+        Eventos = responseHppt.Response!;
+    }
+}
